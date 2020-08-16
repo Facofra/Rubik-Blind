@@ -299,6 +299,7 @@ window.addEventListener("load",function(){
     let solucion = document.querySelector('.solucion')
     let grilla = document.querySelector(".grid");
     let enviar =document.querySelector('.enviar')
+    let botones = document.querySelectorAll('.botones')
 
 
     let layout=[
@@ -344,22 +345,22 @@ window.addEventListener("load",function(){
 
     function colorearCentros(){
         let centroBlanco = document.querySelector('.carita5')
-        centroBlanco.classList.add('blanco')
+        centroBlanco.style.backgroundColor = "rgba(255, 255, 255, 0.856)";
         
         let centroVerde = document.querySelector('.carita23')
-        centroVerde.classList.add('verde')
+        centroVerde.style.backgroundColor = "rgb(0, 155, 72)";
 
         let centroRojo = document.querySelector('.carita26')
-        centroRojo.classList.add('rojo')
+        centroRojo.style.backgroundColor = "rgb(183, 18, 52)";
 
         let centroAzul = document.querySelector('.carita29')
-        centroAzul.classList.add('azul')
+        centroAzul.style.backgroundColor = "rgb(0, 70, 173)";
 
         let centroNaranja = document.querySelector('.carita32')
-        centroNaranja.classList.add('naranja')
+        centroNaranja.style.backgroundColor = "rgb(255, 88, 0)";
 
         let centroAmarillo = document.querySelector('.carita50')
-        centroAmarillo.classList.add('amarillo')
+        centroAmarillo.style.backgroundColor = "rgb(255, 213, 0)";
 
     }
 
@@ -374,31 +375,55 @@ window.addEventListener("load",function(){
                 break;
             case 49:
             case 97:
+                for (const b of botones) {
+                    b.style.border = ""
+                }
+                document.querySelector('.blanco').style.border = "solid 3px aqua"
                 pincel=  "blanco"
                 break;
         
             case 50:
             case 98:
+                for (const b of botones) {
+                    b.style.border = ""
+                }
+                document.querySelector('.verde').style.border = "solid 3px aqua"
                 pincel=  "verde"
                 break;
         
             case 51:
             case 99:
+                for (const b of botones) {
+                    b.style.border = ""
+                }
+                document.querySelector('.rojo').style.border = "solid 3px aqua"
                 pincel=  "rojo"
                 break;
         
             case 52:
             case 100:
+                for (const b of botones) {
+                    b.style.border = ""
+                }
+                document.querySelector('.azul').style.border = "solid 3px aqua"
                 pincel=  "azul"
                 break;
         
             case 53:
             case 101:
+                for (const b of botones) {
+                    b.style.border = ""
+                }
+                document.querySelector('.naranja').style.border = "solid 3px aqua"
                 pincel=  "naranja"
                 break;
         
             case 54:
             case 102:
+                for (const b of botones) {
+                    b.style.border = ""
+                }
+                document.querySelector('.amarillo').style.border = "solid 3px aqua"
                 pincel=  "amarillo"
                 break;
         
@@ -406,28 +431,17 @@ window.addEventListener("load",function(){
                 break;
         }
     })
+    
+    botones.forEach(boton => {
+        boton.addEventListener('click',function(){
+            for (const b of botones) {
+                    b.style.border = ""
+            }
+            this.style.border = "solid 3px aqua"
+            pincel  = boton.classList[0]
+        })
+    });
 
-    document.querySelector('.colorRojo').addEventListener('click',()=>{
-        pincel="rojo"
-    })
-    document.querySelector('.colorVerde').addEventListener('click',()=>{
-        pincel="verde"
-    })
-    document.querySelector('.colorNaranja').addEventListener('click',()=>{
-        pincel="naranja"
-    })
-    document.querySelector('.colorAzul').addEventListener('click',()=>{
-        pincel="azul"
-    })
-    document.querySelector('.colorAmarillo').addEventListener('click',()=>{
-        pincel="amarillo"
-    })
-    document.querySelector('.colorBlanco').addEventListener('click',()=>{
-        pincel="blanco"
-    })
-    document.querySelector('.borrar').addEventListener('click',()=>{
-        pincel="borrar"
-    })
     
 
     let mouseDown=false;
@@ -438,59 +452,64 @@ window.addEventListener("load",function(){
     window.addEventListener('mouseup',function(){
         mouseDown=false;
     })
+
+    function pintarCarita(pincel,carita,index) {
+        switch (pincel) {
+            case "rojo":
+                carita.style.backgroundColor = "rgb(183, 18, 52)";
+                ingresoCaras[index]=3;
+                break;
+        
+            case "azul":
+                carita.style.backgroundColor = "rgb(0, 70, 173)";
+                ingresoCaras[index]=4;
+                
+                break;
+        
+            case "verde":
+                carita.style.backgroundColor = "rgb(0, 155, 72)";
+                ingresoCaras[index]=2;
+                
+                break;
+        
+            case "blanco":
+                carita.style.backgroundColor = "rgba(255, 255, 255, 0.856)";
+                ingresoCaras[index]=1;
+                
+                break;
+        
+            case "naranja":
+                carita.style.backgroundColor = "rgb(255, 88, 0)";
+                ingresoCaras[index]=5;
+                
+                break;
+        
+            case "amarillo":
+                carita.style.backgroundColor = "rgb(255, 213, 0)";
+                ingresoCaras[index]=6;
+                
+                break;
+        
+            case "borrar":
+                carita.style.backgroundColor = "grey";
+                ingresoCaras[index]=0;
+                
+                break;
+        
+            default:
+                break;
+        }
+    }
     caritas.forEach((carita,index) => {
 
-        
         carita.addEventListener("mousemove",function(e){
             if (mouseDown) {
-                
-                switch (pincel) {
-                    case "rojo":
-                        this.style.backgroundColor = "rgb(183, 18, 52)";
-                        ingresoCaras[index]=3;
-                        break;
-                
-                    case "azul":
-                        this.style.backgroundColor = "rgb(0, 70, 173)";
-                        ingresoCaras[index]=4;
-                        
-                        break;
-                
-                    case "verde":
-                        this.style.backgroundColor = "rgb(0, 155, 72)";
-                        ingresoCaras[index]=2;
-                        
-                        break;
-                
-                    case "blanco":
-                        this.style.backgroundColor = "rgba(255, 255, 255, 0.856)";
-                        ingresoCaras[index]=1;
-                        
-                        break;
-                
-                    case "naranja":
-                        this.style.backgroundColor = "rgb(255, 88, 0)";
-                        ingresoCaras[index]=5;
-                        
-                        break;
-                
-                    case "amarillo":
-                        this.style.backgroundColor = "rgb(255, 213, 0)";
-                        ingresoCaras[index]=6;
-                        
-                        break;
-                
-                    case "borrar":
-                        this.style.backgroundColor = "grey";
-                        ingresoCaras[index]=0;
-                        
-                        break;
-                
-                    default:
-                        break;
-                }
+                pintarCarita(pincel,carita,index)
             }
-            
+        })
+        
+        carita.addEventListener("mousedown",function(e){
+            pintarCarita(pincel,carita,index)
         })
     });
     

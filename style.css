@@ -16,7 +16,7 @@ html{
 body{
     display: flex;
     justify-content: center;
-    background-color: indigo;
+    background-color: #0a112f;
     height: 100%;
 }
 
@@ -30,12 +30,19 @@ main{
     width: 50%;
 }
 
+header{
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+}
+
 .grid{
     display: grid;
     grid-template-rows: repeat(9,auto);
     grid-template-columns: repeat(12,auto);
-    width: 600px;
-    height: 450px;
+    width: 90%;
+    height: 75%;
+    position: relative;
 }
 
 .carita-si{
@@ -62,8 +69,23 @@ main{
     background-color: rgb(255, 213, 0);
 }
 
+.botones{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .gris{
     background-color: grey;
+}
+
+.enviar{
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 aside{
@@ -77,11 +99,30 @@ aside{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 90%;
-    height: 40%;
+    min-width: 90%;
+    min-height: 40%;
     border: 5px darkcyan double;
 }
 
 .result{
     color: whitesmoke;
+}
+
+@media (max-width: 480px){
+    body{
+        flex-direction: column;
+    }
+
+    main{
+        width: 100%;
+    }
+
+    header{
+        width: 100%;
+    }
+
+    aside{
+        width: 100%;
+    }
+
 }
