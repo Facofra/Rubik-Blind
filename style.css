@@ -108,6 +108,13 @@ aside{
     color: whitesmoke;
 }
 
+.ingresoRapido{
+    margin: 30px 0;
+}
+
+.inputNumeros{
+    width: 345px;
+}
 @media (max-width: 480px){
     body{
         flex-direction: column;

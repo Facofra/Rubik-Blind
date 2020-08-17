@@ -300,6 +300,7 @@ window.addEventListener("load",function(){
     let grilla = document.querySelector(".grid");
     let enviar =document.querySelector('.enviar')
     let botones = document.querySelectorAll('.botones')
+    let inputNumeros = document.querySelector('.inputNumeros')
 
 
     let layout=[
@@ -370,9 +371,6 @@ window.addEventListener("load",function(){
 
     addEventListener('keydown',(e)=>{
         switch (e.keyCode) {
-            case 96:
-                console.log(diccionarioEsquinas);
-                break;
             case 49:
             case 97:
                 for (const b of botones) {
@@ -446,7 +444,6 @@ window.addEventListener("load",function(){
 
     let mouseDown=false;
     window.addEventListener('mousedown',function(e){
-        e.preventDefault()
         mouseDown=true;
     })
     window.addEventListener('mouseup',function(){
@@ -455,35 +452,36 @@ window.addEventListener("load",function(){
 
     function pintarCarita(pincel,carita,index) {
         switch (pincel) {
+            case "3":
             case "rojo":
                 carita.style.backgroundColor = "rgb(183, 18, 52)";
                 ingresoCaras[index]=3;
                 break;
-        
+            case "4":
             case "azul":
                 carita.style.backgroundColor = "rgb(0, 70, 173)";
                 ingresoCaras[index]=4;
                 
                 break;
-        
+            case "2":
             case "verde":
                 carita.style.backgroundColor = "rgb(0, 155, 72)";
                 ingresoCaras[index]=2;
                 
                 break;
-        
+            case "1":
             case "blanco":
                 carita.style.backgroundColor = "rgba(255, 255, 255, 0.856)";
                 ingresoCaras[index]=1;
                 
                 break;
-        
+            case "5":
             case "naranja":
                 carita.style.backgroundColor = "rgb(255, 88, 0)";
                 ingresoCaras[index]=5;
                 
                 break;
-        
+            case "6":
             case "amarillo":
                 carita.style.backgroundColor = "rgb(255, 213, 0)";
                 ingresoCaras[index]=6;
@@ -567,8 +565,26 @@ window.addEventListener("load",function(){
         
     })
 
+    inputNumeros.addEventListener('keypress',e=>{
+ 
+        if (! [49,50,51,52,53,54].includes(e.keyCode)){
+            e.preventDefault()
+        }
+    })
+    inputNumeros.addEventListener('input',function(e){
+        
+        if (e.inputType == "deleteContentBackward") {
+            pintarCarita("borrar",caritas[this.value.length],this.value.length)
+        }else if (["1","2","3","4","5","6"].includes(e.data)) {
+            pincel = this.value[this.value.length-1];
+            pintarCarita(pincel,caritas[this.value.length-1],this.value.length-1)
+        }
+
+    })
+
     document.querySelector('.reset').addEventListener('click',()=>{
         pincel=""
+        inputNumeros.value =""
 
         if (solucionAristas) {
             solucion.removeChild(solucionAristas)
