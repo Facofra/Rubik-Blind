@@ -523,44 +523,50 @@ window.addEventListener("load",function(){
         }
 
         //primer validator
-        if (verificador == 168) {
-            //segundo validator
-            if (solucionAristas) {
-                solucion.removeChild(solucionAristas)
-                solucionAristas=undefined;
-            }
-    
-            if (solucionEsquinas) {
-                solucion.removeChild(solucionEsquinas)
-                solucionEsquinas=undefined;
-            }
-            if (ingresoAristas() && ingresoEsquinas()) {
-                solucionAristas = document.createElement('p')
-                solucionEsquinas = document.createElement('p')
+        try {
+            if (verificador == 168) {
+                //segundo validator
+                if (solucionAristas) {
+                    solucion.removeChild(solucionAristas)
+                    solucionAristas=undefined;
+                }
         
-                let resultadoAristas = resolverAristas(estadoAristas);
-        
-                let resultadoEsquinas = resolverEsquinas(estadoEsquinas);  
-        
-                solucionAristas.innerHTML = `Aristas <br> Resuelto en ${resultadoAristas.contador} permutaciones <br>          
-                ${resultadoAristas.resultado}<br>     
-                ${resultadoAristas.contador %2 != 0? "Hay Paridad, ejecutar algorimo para resolver" : ""}
-                `;
-        
-                solucionEsquinas.innerHTML = `Esquinas <br>Resuelto en ${resultadoEsquinas.contador} permutaciones <br>
-                ${resultadoEsquinas.resultado}
-                `;
+                if (solucionEsquinas) {
+                    solucion.removeChild(solucionEsquinas)
+                    solucionEsquinas=undefined;
+                }
+                if (ingresoAristas() && ingresoEsquinas()) {
+                    solucionAristas = document.createElement('p')
+                    solucionEsquinas = document.createElement('p')
+            
+                    let resultadoAristas = resolverAristas(estadoAristas);
+            
+                    let resultadoEsquinas = resolverEsquinas(estadoEsquinas);  
+            
+                    solucionAristas.innerHTML = `Aristas <br> Resuelto en ${resultadoAristas.contador} permutaciones tipo T: <br>          
+                    ${resultadoAristas.resultado}<br>     
+                    ${resultadoAristas.contador %2 != 0? "Hay Paridad, ejecutar: D A D " : ""}
+                    `;
+            
+                    solucionEsquinas.innerHTML = `Esquinas <br>Resuelto en ${resultadoEsquinas.contador} permutaciones tipo Y: <br>
+                    ${resultadoEsquinas.resultado}
+                    `;
 
-                solucion.appendChild(solucionAristas)
-                solucion.appendChild(solucionEsquinas)
-            }else{
+                    solucion.appendChild(solucionAristas)
+                    solucion.appendChild(solucionEsquinas)
+                }else{
+                    alert("Colores no fueron ingresados correctamente")
+                }
+                estadoAristas=[]
+                estadoEsquinas=[]
+                
+            } else{
                 alert("Colores no fueron ingresados correctamente")
             }
-            estadoAristas=[]
-            estadoEsquinas=[]
-            
-        } else{
-            alert("Colores no fueron ingresados correctamente")
+        
+        } catch (error) {
+            alert("Error de colores, se reiniciará la página ")
+            location.reload()
         }
         
     })
