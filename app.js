@@ -302,7 +302,6 @@ window.addEventListener("load",function(){
     let botones = document.querySelectorAll('.botones')
     let inputNumeros = document.querySelector('.inputNumeros')
 
-
     let layout=[
         0,0,0,1,1,1,0,0,0,0,0,0,
         0,0,0,1,1,1,0,0,0,0,0,0,
@@ -577,13 +576,172 @@ window.addEventListener("load",function(){
             e.preventDefault()
         }
     })
+
+    function inputReloj(input){
+        let posicionInput = input.length;
+        let posicionCubo;
+
+        switch (posicionInput) {
+            case 1:
+                posicionCubo = 0;
+                break;
+            case 2:
+                posicionCubo = 1;
+                break;
+            case 3:
+                posicionCubo = 2;
+                break;
+            case 4:
+                posicionCubo = 4;
+                break;
+            case 5:
+                posicionCubo = 7;
+                break;
+            case 6:
+                posicionCubo = 6;
+                break;
+            case 7:
+                posicionCubo = 5;
+                break;
+            case 8:
+                posicionCubo = 3;
+                break;
+            case 9:
+                posicionCubo = 8;
+                break;
+            case 10:
+                posicionCubo = 9;
+                break;
+            case 11:
+                posicionCubo = 10;
+                break;
+            case 12:
+                posicionCubo = 21;
+                break;
+            case 13:
+                posicionCubo = 30;
+                break;
+            case 14:
+                posicionCubo = 29;
+                break;
+            case 15:
+                posicionCubo = 28;
+                break;
+            case 16:
+                posicionCubo = 20;
+                break;
+            case 17:
+                posicionCubo = 11;
+                break;
+            case 18:
+                posicionCubo = 12;
+                break;
+            case 19:
+                posicionCubo = 13;
+                break;
+            case 20:
+                posicionCubo = 23;
+                break;
+            case 21:
+                posicionCubo = 33;
+                break;
+            case 22:
+                posicionCubo = 32;
+                break;
+            case 23:
+                posicionCubo = 31;
+                break;
+            case 24:
+                posicionCubo = 22;
+                break;
+            case 25:
+                posicionCubo = 14;
+                break;
+            case 26:
+                posicionCubo = 15;
+                break;
+            case 27:
+                posicionCubo = 16;
+                break;
+            case 28:
+                posicionCubo = 25;
+                break;
+            case 29:
+                posicionCubo = 36;
+                break;
+            case 30:
+                posicionCubo = 35;
+                break;
+            case 31:
+                posicionCubo = 34;
+                break;
+            case 32:
+                posicionCubo = 24;
+                break;
+            case 33:
+                posicionCubo = 17;
+                break;
+            case 34:
+                posicionCubo = 18;
+                break;
+            case 35:
+                posicionCubo = 19;
+                break;
+            case 36:
+                posicionCubo = 27;
+                break;
+            case 37:
+                posicionCubo = 39;
+                break;
+            case 38:
+                posicionCubo = 38;
+                break;
+            case 39:
+                posicionCubo = 37;
+                break;
+            case 40:
+                posicionCubo = 26;
+                break;
+            case 41:
+                posicionCubo = 40;
+                break;
+            case 42:
+                posicionCubo = 41;
+                break;
+            case 43:
+                posicionCubo = 42;
+                break;
+            case 44:
+                posicionCubo = 44;
+                break;
+            case 45:
+                posicionCubo = 47;
+                break;
+            case 46:
+                posicionCubo = 46;
+                break;
+            case 47:
+                posicionCubo = 45;
+                break;
+            case 48:
+                posicionCubo = 43;
+                break;
+        }
+
+        return posicionCubo;
+
+    }
+
     inputNumeros.addEventListener('input',function(e){
         
         if (e.inputType == "deleteContentBackward") {
             pintarCarita("borrar",caritas[this.value.length],this.value.length)
         }else if (["1","2","3","4","5","6"].includes(e.data)) {
             pincel = this.value[this.value.length-1];
-            pintarCarita(pincel,caritas[this.value.length-1],this.value.length-1)
+            let posicionCubo = inputReloj(this.value);
+            pintarCarita(pincel,caritas[posicionCubo],posicionCubo)
+            // funcion de abajo, pinta el cubo siguiendo lineas rectas
+            // pintarCarita(pincel,caritas[this.value.length-1],this.value.length-1)
         }
 
     })
